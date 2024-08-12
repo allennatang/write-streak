@@ -1,0 +1,185 @@
+{# templates/base.html #}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>replit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='reddit_style.css') }}">
+    <link href="C:\Users\allen\reddit_bot\reddit_style.css" rel="stylesheet" type="text/css" /> 
+</head>
+
+<body>
+
+  <div>
+    <a href="/base">Home</a>
+    <a href="/login">Login</a>
+  </div>
+  <hr>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+  </body>
+  </html>
+
+  <div class="header-bar">
+    <!-- PROFILE BOX -->
+ 
+    <div class="toggle-box">
+
+      <div class="toggle-label">
+        <p>Choose a mode</p>
+      </div>
+
+      <div class="dropdown">
+        <select id="mySelectMode">
+          <option value="Writing" selected="selected">Writing</option>
+          <option value="Feedback" >Feedback</option>
+        </select>
+      </div>
+    </div>
+
+    <h1>Write Streak App</h1>
+
+    <div class="profile-box">
+
+      <!-- <img src="avatar.png" alt="avatar" id="avatar"> -->
+      
+      <div class="streak-label">
+        <p>13 day streak</p>
+      </div>
+
+      <div class="welcome-message">
+        <p>Welcome, <br></br>Allenna</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- LANGUAGE SELECTION -->
+  <div class="center">
+  <div class="dropdown">
+
+    <select id="mySelect" onchange=changeLanguage()>
+      <option value="Select a language" selected="selected">Select a language</option>
+      <option value="French" >French</option>
+      <option value="Chinese" >Chinese</option>
+    </select>
+    <!-- drop down with separated -->
+    <!-- <button onClick="myFunction()" class="dropbtn">Select a language</button>
+    <div id="myDropdown" class="dropdown-content">
+      <button>French</button>
+      <button>Chinese</button>
+    </div> -->
+
+  </div>
+</div>
+
+  <!-- TEXTBOX -->
+    <div class="text-box">
+      <div class="left">
+        <p id="language-label">Select a language</p>
+        <p class="subheader">Start typing your daily post...</h3>
+      </div>
+
+    <hr></hr>
+
+      <form method="POST">
+
+        <div class="center">
+        <!-- TEXTBOX -->
+        <textarea name="text" id="inputField" oninput=countWords() rows="20" cols="100"> </textarea>
+      </div>
+        <!-- <input name="text"> -->
+        <div class="center">
+          <input type="submit">
+        </div>
+
+      </form>
+      
+      {% if show_message %}
+            <script>
+                alert("Reply submitted successfully: {{ processed_text }}");
+            </script>
+        {% endif %}
+
+    </div>
+
+  
+  
+  
+  
+</br>
+
+</body>
+
+
+
+
+<!-- <script src="myscripts.js"></script> -->
+
+<script>
+
+  // Open dropdown menu when clicked
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+  
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+
+    
+  }
+
+  function changeLanguage() {
+      var language = document.getElementById("mySelect").value;
+      document.getElementById("language-label").innerHTML = language;
+    }
+</script>
+
+</html>
+<!-- 
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+
+    <div id="mydiv"></div>
+
+    <script type="text/babel">
+      function Hello() {
+        return <h1>Hello World!</h1>;
+      }
+
+      const container = document.getElementById('mydiv');
+      const root = ReactDOM.createRoot(container);
+      root.render(<Hello />)
+    </script>
+
+  </body>
+</html> -->
+
