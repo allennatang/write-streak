@@ -16,6 +16,7 @@
   <div>
     <a href="/base">Home</a>
     <a href="/login">Login</a>
+    <a href="/logout">Logout</a>
   </div>
   <hr>
   {% with messages = get_flashed_messages() %}
@@ -59,7 +60,7 @@
       </div>
 
       <div class="welcome-message">
-        <p>Welcome, <br></br>Allenna</p>
+        <p>Welcome, <br></br>{{session['username']}}</p> <!-- Displaying the username from session -->
       </div>
 
     </div>
